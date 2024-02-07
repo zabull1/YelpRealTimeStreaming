@@ -12,9 +12,14 @@ def handle_date(obj):
 
 def send_data_over_socket(file_path, host="127.0.0.1", port=9999, chunk_size=2):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((host, port))
-    s.listen(1)
-    print(f"Listening for connections on {host}:{port}")
+    try:
+        s.bind((host, port))
+        s.listen(1)
+        print(f"Listening for connections on {host}:{port}")
+    except OSError as  e:
+        print(f'Error binding {host}:{port} \n{e}')
+    except Exception as e:
+        print(e)
 
     last_sent_index = 0
     while True:
