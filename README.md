@@ -21,7 +21,7 @@ The key components covered in this project include:
 
 ## Table of Content
 
-- [Overview](#overview)
+- -[Overview](#overview)
 - [Architecture](#architecture)
 - [Technologies](#technologies)
 - [API Data Description](#api-data-description)
@@ -34,13 +34,13 @@ The key components covered in this project include:
 
 The project is designed with the following components:
 
-**Data Source:** We use yelp.com dataset for our pipeline.
-**TCP/IP Socket:** Used to stream data over the network in chunks
-**Apache Spark:** For data processing with its master and worker nodes.
-**Confluent Kafka:** Our cluster on the cloud
-**Control Center and Schema Registry:** Helps in monitoring and schema management of our Kafka streams.
-**Kafka Connect:** For connecting to elasticsearch
-**Elasticsearch:** For indexing and querying
+- **Data Source:** We use yelp.com dataset for our pipeline.
+- **TCP/IP Socket:** Used to stream data over the network in chunks
+- **Apache Spark:** For data processing with its master and worker nodes.
+- **Confluent Kafka:** Our cluster on the cloud
+- **Control Center and Schema Registry:** Helps in monitoring and schema management of our Kafka streams.
+- **Kafka Connect:** For connecting to elasticsearch
+- **Elasticsearch:** For indexing and querying
 
 ## Architecture
 
