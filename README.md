@@ -21,7 +21,7 @@ The key components covered in this project include:
 
 ## Table of Content
 
-- -[Overview](#overview)
+- [Overview](#overview)
 - [Architecture](#architecture)
 - [Technologies](#technologies)
 - [API Data Description](#api-data-description)
