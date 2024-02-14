@@ -10,8 +10,8 @@ services:
     command: bin/spark-class org.apache.spark.deploy.master.Master
     volumes:
       - ./config:/opt/bitnami/spark/config
-      - ./jobs:/opt/bitnami/spark/jobs
-      - ./datasets:/opt/bitnami/spark/datasets
+      - ./src/jobs:/opt/bitnami/spark/src/jobs
+      - ./data:/opt/bitnami/spark/data
       - ./requirements.txt:/requirements.txt
     ports:
       - "9090:8080"
@@ -28,7 +28,7 @@ services:
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     volumes:
       - ./config:/opt/bitnami/spark/config
-      - ./src/jobs:/opt/bitnami/spark/jobs
+      - ./src/jobs:/opt/bitnami/spark/src/jobs
       - ./data:/opt/bitnami/spark/data
       - ./requirements.txt:/requirements.txt
     depends_on:
