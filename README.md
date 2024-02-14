@@ -4,9 +4,20 @@
 <img src="assets/yelpSentimentAnalysis.png" width="1000">
 </p>
 
-This project focuses on real-time sentiment analysis of Yelp reviews streaming data. It aims to provide insights into the sentiments expressed by users in their reviews of various businesses listed on Yelp. The project employs advanced data engineering techniques and tools to extract, process, analyze, and visualize the sentiment data in real-time.
+This project focuses on real-time sentiment analysis of Yelp reviews streaming data. It provide insights into the sentiments expressed by users in their reviews of various businesses listed on Yelp. The project employs advanced data engineering techniques and tools to extract, process, analyze, and visualize the sentiment data in real-time.
 
 By performing real-time sentiment analysis on Yelp reviews, this project aims to assist businesses in understanding customer feedback, identifying trends, and making data-driven decisions to enhance customer satisfaction and improve overall business performance.
+
+Furthermore, the project serves as a comprehensive resource for constructing an end-to-end data engineering pipeline employing TCP/IP Socket, Apache Spark, OpenAI LLM, Kafka, and Elasticsearch. It encompasses every stage of the process, including data acquisition, processing, sentiment analysis utilizing ChatGPT, production to Kafka topic, and establishment of connections to Elasticsearch.
+
+The key components covered in this project include:
+
+Establishing a data pipeline utilizing TCP/IP.
+Facilitating real-time data streaming via Apache Kafka.
+Employing data processing techniques with Apache Spark.
+Conducting real-time sentiment analysis utilizing OpenAI ChatGPT.
+Synchronizing data from Kafka to Elasticsearch.
+Indexing and querying data within Elasticsearch.
 
 ## Table of Content
 
