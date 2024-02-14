@@ -1,120 +1,82 @@
 # Yelp RealTime Sentiment Analysis Streaming
 
-<!-- <p align="center">
-<img src="assets/architecture/edinburgh_city.jpeg" width="1000">
-</p> -->
+<p align="center">
+<img src="assets/yelpSentimentAnalysis.png" width="1000">
+</p>
 
-<!-- I recently finished my MSc in Data Science at Heriot-Watt University. Being an international student, I was keen to connect with the vibrant city of Edinburgh on a deeper level. To achieve this, I undertook a data engineering project that explores the vast amount of information available on the r/Edinburgh subreddit using the Reddit API. This project not only provides an exciting opportunity to apply my data engineering skills but also offers a unique perspective on the pulse of the local community and gives me insights into the current happenings around me.
+This project focuses on real-time sentiment analysis of Yelp reviews streaming data. It aims to provide insights into the sentiments expressed by users in their reviews of various businesses listed on Yelp. The project employs advanced data engineering techniques and tools to extract, process, analyze, and visualize the sentiment data in real-time.
 
-This project offers a data pipeline solution that enables the extraction, transformation, and loading (ETL) of data from the Reddit (r/Edinburgh subreddit) API into a Redshift data warehouse. The pipeline utilizes tools and services such as Apache Airflow, Celery, PostgreSQL, Amazon S3, AWS Glue, and Amazon Athena, and finally, the data is visualized in a dashboard with Tableau. -->
+By performing real-time sentiment analysis on Yelp reviews, this project aims to assist businesses in understanding customer feedback, identifying trends, and making data-driven decisions to enhance customer satisfaction and improve overall business performance.
 
 ## Table of Content
 
-<!-- - [Overview](#overview)
+- [Overview](#overview)
 - [Architecture](#architecture)
 - [Technologies](#technologies)
 - [API Data Description](#api-data-description)
-- [Project Structure](#Project-Structure)
 - [Prerequisite](#prerequisites)
 - [Usage](#usage)
-- [DashBoard](#dashboard)
 - [Improvements](#improvements)
-- [Reference](#reference)
-- [License](#license) -->
+- [License](#license)
 
 ## Overview
 
-<!-- The pipeline is designed to:
+The project is designed with the following components:
 
-1. Extract data from r/Edinburgh subreddit using Reddit API.
-2. Store the raw data into an S3 bucket from Airflow.
-3. Transform the data using AWS Glue and Amazon Athena.
-4. Load the transformed data into Amazon Redshift for analytics and querying.
-5. Visualised the data in Tableau -->
+**Data Source:** We use yelp.com dataset for our pipeline.
+**TCP/IP Socket:** Used to stream data over the network in chunks
+**Apache Spark:** For data processing with its master and worker nodes.
+**Confluent Kafka:** Our cluster on the cloud
+**Control Center and Schema Registry:** Helps in monitoring and schema management of our Kafka streams.
+**Kafka Connect:** For connecting to elasticsearch
+**Elasticsearch:** For indexing and querying
 
 ## Architecture
 
-<!-- <p align="center">
-<img src="assets/architecture/EdinburghRedditArchitecture_.drawio.png" width="1000">
-</p> -->
+<p align="center">
+<img src="assets/System_architecture.png" width="1000">
+</p>
 
 ## Technologies
 
-<!-- - Cloud: `AWS`
-- Infrastructure: `Terraform`
-- Orchestration: `Airflow`
-- Data lake: `Amazon S3`
-- Data transformation: `Amazon Athena`
-- Data warehouse: `Amazon Redshift`
-- Data visualization: `Tableau` -->
+- Python
+- TCP/IP
+- Confluent Kafka
+- Apache Spark
+- openai api
+- Docker
+- Elasticsearch
 
 ## API Data Description
 
-<!-- | Column           | Description                                      |
+| Column           | Description                                      |
 |------------------|--------------------------------------------------|
-| `id`        | Unique identifier for the Reddit post            |
-| `title`          | Title of the Reddit post                         |
-| `score`          | Score associated with the post                   |
-| `num_comments`   | Number of comments on the post                   |
-| `author`         | Username of the post author                      |
-| `created_utc`    | UTC timestamp when the post was created         |
-| `url`            | URL associated with the post                     |
-| `over_18`    | Indicates whether the post contains mature content (18+) |
-| `edited`     | Timestamp indicating when the post was last edited |
-| `spoiler`    | Indicates if the post contains spoiler content    |
-| `stickied`   | Indicates if the post is stickied at the top of the subreddit | -->
-
-<!-- ## Project Structure
-
-project-root
- ├── assets
- ├── config
- ├── dags
- ├── data
- ├── iaas
- ├── logs
- ├── plugins
- ├── notebooks
- ├── scripts
- ├── src
- ┃ ├── etl
- ┃ ┃ ├── reddit_etl.py
- ├── tests
- ├── venv
- ├── requirements.txt
- ├── airflow.env
- ├── docker-compose.yml
- ├── Dockerfile
- ├── README.md
- ├── requirements.txt
-
-project-root
- ├── notebooks         # Jupyter notebooks for exploratory data analysis and development
- ├── src               # Source code for data processing, ETL, and analysis
- ┃ ├── etl            # ETL (Extract, Transform, Load) scripts and modules
- ┃ ┃ ├── reddit_etl.py # Reddit data extraction and transformation script
- ├── data              # Data directory for storing raw and processed datasets
- ├── docs              # Documentation, project reports, and relevant resources
- ├── requirements.txt  # List of project dependencies and their versions
- ├── README.md         # Project overview, documentation, and instructions -->
+| `review_id`        | Unique identifiers for each review.            |
+| `user_id`          | Unique identifiers for each user who posted reviews.    |
+| `business_id`          | Unique identifiers for each business being reviewed.                |
+| `stars`   | Rating given in the review (scale 1 to 5 stars).                   |
+| `date`         | Date when the review was posted                     |
+| `text`    | Text of the review        |
+| `feedback`            | Sentiment Analysis colums (POSITIVE, NEGATIVE, NEUTRAL)                    |
 
 ## Prerequisites
 
-<!-- - Access to AWS Account with appropriate permissions for S3, Glue, Athena, and Redshift.
-- Reddit API credentials.
+- Access to confluent kafka and ElasticSearch Accounts
+- openai API credentials.
 - Docker Installation
 - Python 3.9 or higher
 - Tableau Installation
 - Basic knowledge of Python programming
+- Basic Socket programming
 - Familiarity with data engineering concepts
-- Basic knowledge of command-line -->
+- Basic knowledge of command-line
 
 ## Usage
 
-<!-- 1. Clone the repository.
+1. Clone the repository.
 
    ```bash
-    git clone https://github.com/zabull1/EdinburghReddit_e2e.git
+    git clone https://github.com/zabull1/YelpRealTimeStreaming.git
    ```
 
 2. Create a virtual environment.
@@ -138,33 +100,21 @@ project-root
 5. Rename the configuration file and the credentials to the file.
 
    ```bash
-    mv config/config.conf.example config/config.conf
+    mv config/config.conf.example config/config.py
    ```
 
 6. Starting the containers
 
    ```bash
-    docker-compose up airflow-init
+    docker-compose up --build
     docker-compose up -d 
    ```
 
-7. Launch the Airflow web UI and run the dag.
-
-   ```bash
-    open http://localhost:8080
-    ``` -->
-
-## DashBoard
-
 ## Improvements
 
-<!-- - 1. Unit testing
-- 2. Infrastructure as code
-- 3. Tableau dashboard -->
-
-<!-- ## Reference -->
+- 1. Unit testing
+- 2. Tableau dashboard
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://mit-license.org/) file for details.
-
