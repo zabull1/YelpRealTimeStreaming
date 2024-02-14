@@ -12,12 +12,12 @@ Furthermore, the project serves as a comprehensive resource for constructing an 
 
 The key components covered in this project include:
 
-Establishing a data pipeline utilizing TCP/IP.
-Facilitating real-time data streaming via Apache Kafka.
-Employing data processing techniques with Apache Spark.
-Conducting real-time sentiment analysis utilizing OpenAI ChatGPT.
-Synchronizing data from Kafka to Elasticsearch.
-Indexing and querying data within Elasticsearch.
+- Establishing a data pipeline utilizing TCP/IP.
+- Facilitating real-time data streaming via Apache Kafka.
+- Employing data processing techniques with Apache Spark.
+- Conducting real-time sentiment analysis utilizing OpenAI ChatGPT.
+- Synchronizing data from Kafka to Elasticsearch.
+- Indexing and querying data within Elasticsearch.
 
 ## Table of Content
 
